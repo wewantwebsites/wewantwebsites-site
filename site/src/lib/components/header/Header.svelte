@@ -16,7 +16,7 @@
 		},
 		{
 			label: 'Contact',
-			target: '/contact'
+			target: '/contact-us'
 		}
 	];
 </script>

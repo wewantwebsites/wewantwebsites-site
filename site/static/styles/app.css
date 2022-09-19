@@ -43,7 +43,8 @@
 }
 
 * {
-	transition: all .3s ease;
+	transition: all .15s ease;
+	box-sizing: border-box;
 }
 
 body {

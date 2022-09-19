@@ -1,16 +1,28 @@
 <script lang="ts">
-	import Header from '$lib/header/Header.svelte';
+	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
+	import { darkMode, initDarkMode } from '$lib/util/darkMode';
+	import formatPageTitle from '$lib/util/pageTitle';
+	import Header from '$lib/components/header/Header.svelte';
+	import HeroBanner from '$lib/components/banner/HeroBanner.svelte';
+
+	onMount(() => {
+		const isDark = initDarkMode();
+		if (isDark) darkMode.dark();
+	});
 </script>
 
 <Header />
-
+<HeroBanner title={formatPageTitle($page.routeId ?? 'Home')} />
 <main>
 	<slot />
+	<h1>Dark Mode is currently: {$darkMode ? 'On' : 'Off'}</h1>
+	<h2>
+		The current page is: {@html formatPageTitle($page.routeId ?? 'Home')}
+	</h2>
 </main>
 
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
+<footer><a href="/">We Want Web LLC est 2021</a></footer>
 
 <style>
 	main {
