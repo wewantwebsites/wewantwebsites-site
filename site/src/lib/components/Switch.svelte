@@ -5,7 +5,7 @@
 
 	const dispatch = createEventDispatcher();
 
-	function handleCheck() {
+	function dispatchToggle() {
 		dispatch('toggle', {
 			isChecked: checked
 		});
@@ -13,7 +13,7 @@
 </script>
 
 <label class="switch">
-	<input type="checkbox" bind:checked on:change={handleCheck} />
+	<input type="checkbox" bind:checked on:change={dispatchToggle} />
 	<span class="slider" />
 </label>
 

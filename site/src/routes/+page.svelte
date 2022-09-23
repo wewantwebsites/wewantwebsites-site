@@ -8,8 +8,10 @@
 	<p>
 		Don't contribute to that sort of riff-raff, clean up your cyber-neighborhood and have <strong
 			>We Want Web LLC</strong
-		> make your website. We gaurantee to make sure your website won't have anything to do with those
-		nasty good-for-idk-what internet rags.
+		>
+		make your website. Gone are the days of confusing memes, no more will you have to scour
+		community forums looking for beaten up answers to obscure PHP Wordpress or Joomla questions. You
+		no longer need to do anything more than contact <strong>We Want Web LLC</strong>
 	</p>
 </section>
 

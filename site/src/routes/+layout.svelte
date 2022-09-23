@@ -6,18 +6,14 @@
 	import HeroBanner from '$lib/components/banner/HeroBanner.svelte';
 	import LightSwitch from '$lib/components/Switch.svelte';
 
-	const HOME_TITLE = 'WWW: The way the internet was supposed to be made';
-	let bannerTitle = HOME_TITLE;
 	onMount(() => {
 		const isDark = initDarkMode();
 		if (isDark) darkMode.setDark();
 	});
-
-	$: bannerTitle = $page.routeId ? $page.routeId : HOME_TITLE;
 </script>
 
 <Header />
-<HeroBanner title={bannerTitle} />
+<HeroBanner />
 <main>
 	<slot />
 	<div>

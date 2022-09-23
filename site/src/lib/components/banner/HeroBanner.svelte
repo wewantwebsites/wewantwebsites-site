@@ -1,11 +1,16 @@
 <script lang="ts">
-	export let title: string;
+	import { page } from '$app/stores';
+	const HOME_TITLE = 'The way the internet was supposed to be made';
 </script>
 
 <div>
 	<section>
 		<h1>
-			{title.replaceAll('-', ' ')}
+			{#if $page.routeId}
+				{$page.routeId.replaceAll('-', ' ')}
+			{:else}
+				<span>WWW:</span> {HOME_TITLE}
+			{/if}
 		</h1>
 	</section>
 </div>
@@ -22,5 +27,9 @@
 	}
 	h1 {
 		text-transform: capitalize;
+	}
+
+	span {
+		font-weight: 900;
 	}
 </style>
