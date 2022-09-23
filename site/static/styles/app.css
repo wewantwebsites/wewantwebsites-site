@@ -125,3 +125,8 @@ button:focus:not(:focus-visible) {
 		font-size: 2.4rem;
 	}
 }
+
+strong {
+	color: var(--accent);
+	font-weight: 900;
+}

@@ -41,7 +41,6 @@
 			{/each}
 		</ul>
 	</nav>
-	<LightSwitch checked={$darkMode} on:toggle={darkMode.toggle} />
 </header>
 
 <style>

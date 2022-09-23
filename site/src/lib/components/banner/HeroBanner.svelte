@@ -1,10 +1,12 @@
 <script lang="ts">
-	export let title: string = '';
+	export let title: string;
 </script>
 
 <div>
 	<section>
-		<h1>{@html title}</h1>
+		<h1>
+			{title.replaceAll('-', ' ')}
+		</h1>
 	</section>
 </div>
 
@@ -17,5 +19,8 @@
 	}
 	section {
 		padding: 1rem;
+	}
+	h1 {
+		text-transform: capitalize;
 	}
 </style>

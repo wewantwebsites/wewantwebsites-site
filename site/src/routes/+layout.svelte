@@ -2,21 +2,28 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { darkMode, initDarkMode } from '$lib/util/darkMode';
-	import formatPageTitle from '$lib/util/pageTitle';
 	import Header from '$lib/components/header/Header.svelte';
 	import HeroBanner from '$lib/components/banner/HeroBanner.svelte';
+	import LightSwitch from '$lib/components/Switch.svelte';
 
+	const HOME_TITLE = 'WWW: The way the internet was supposed to be made';
+	let bannerTitle = HOME_TITLE;
 	onMount(() => {
 		const isDark = initDarkMode();
 		if (isDark) darkMode.setDark();
 	});
+
+	$: bannerTitle = $page.routeId ? $page.routeId : HOME_TITLE;
 </script>
 
 <Header />
-<HeroBanner title={formatPageTitle($page.routeId ?? 'Home')} />
+<HeroBanner title={bannerTitle} />
 <main>
 	<slot />
-	<h1>Dark Mode is currently: {$darkMode ? 'On' : 'Off'}</h1>
+	<div>
+		Light Switch:
+		<LightSwitch checked={$darkMode} on:toggle={darkMode.toggle} />
+	</div>
 </main>
 
 <footer><a href="/">We Want Web LLC est 2021</a></footer>
