@@ -11,11 +11,11 @@ function createDarkMode() {
         return !val;
       })
     },
-    dark: () => {
+    setDark: () => {
       setDarkMode(true);
       set(true);
     },
-    light: () => {
+    setLight: () => {
       setDarkMode(false);
       set(false);
     }

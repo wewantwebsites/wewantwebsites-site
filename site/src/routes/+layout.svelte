@@ -8,7 +8,7 @@
 
 	onMount(() => {
 		const isDark = initDarkMode();
-		if (isDark) darkMode.dark();
+		if (isDark) darkMode.setDark();
 	});
 </script>
 
@@ -17,9 +17,6 @@
 <main>
 	<slot />
 	<h1>Dark Mode is currently: {$darkMode ? 'On' : 'Off'}</h1>
-	<h2>
-		The current page is: {@html formatPageTitle($page.routeId ?? 'Home')}
-	</h2>
 </main>
 
 <footer><a href="/">We Want Web LLC est 2021</a></footer>
