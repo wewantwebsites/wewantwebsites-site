@@ -8,7 +8,7 @@ import (
 )
 
 func SendMail(w http.ResponseWriter, r *http.Request) bool {
-	
+
 	// Sender data
 	from := os.Getenv("GMAIL_USERNAME")
 	password := os.Getenv("GMAIL_PASSWORD")
@@ -32,7 +32,7 @@ func SendMail(w http.ResponseWriter, r *http.Request) bool {
 
 	if err != nil {
 		fmt.Println(err)
-		return w.Write({})
+		return false
 	}
 	fmt.Println("Email Sent Successfully")
 	return true

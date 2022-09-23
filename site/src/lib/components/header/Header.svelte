@@ -13,10 +13,10 @@
 			label: 'About',
 			target: '/about'
 		},
-		{
-			label: 'Services',
-			target: '/services'
-		},
+		// {
+		// 	label: 'Services',
+		// 	target: '/services'
+		// },
 		{
 			label: 'Contact',
 			target: '/contact-us'
