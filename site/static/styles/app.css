@@ -29,12 +29,13 @@
   --dark: var(--ON);
 }
 /* If user prefers dark, then that's what they'll get */
-@media (prefers-color-scheme: dark) {
+/* TODO: Chrome interprets this as "DON'T EVER TOGGLE AWAY FROM DARKMODE" */
+/* @media (prefers-color-scheme: dark) {
   .theme-default {
     --light: var(--OFF);
     --dark: var(--ON);
   }
-}
+} */
 
 :root {
 	--text: var(--light, var(--zero-black)) var(--dark, var(--pure-white));
