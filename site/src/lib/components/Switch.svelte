@@ -1,19 +1,9 @@
 <script lang="ts">
 	export let checked: boolean;
-
-	import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
-
-	function dispatchToggle() {
-		dispatch('toggle', {
-			isChecked: checked
-		});
-	}
 </script>
 
 <label class="switch">
-	<input type="checkbox" bind:checked on:change={dispatchToggle} />
+	<input type="checkbox" bind:checked />
 	<span class="slider" />
 </label>
 
