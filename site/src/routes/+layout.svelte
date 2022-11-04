@@ -1,9 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { darkMode, initDarkMode } from '$lib/util/darkMode';
+	import { initDarkMode } from '$lib/util/darkMode';
 	import Header from '$lib/components/header/Header.svelte';
 	import HeroBanner from '$lib/components/banner/HeroBanner.svelte';
-	import LightSwitch from '$lib/components/Switch.svelte';
 	onMount(() => {
 		initDarkMode();
 	});
