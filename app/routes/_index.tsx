@@ -1,5 +1,6 @@
-import type { MetaFunction } from '@remix-run/node';
-import { Link } from '@remix-run/react';
+import type { ActionFunctionArgs, MetaFunction } from '@remix-run/node';
+import { json } from '@remix-run/node';
+import { Link, Form, useActionData } from '@remix-run/react';
 import { Card, CardHeader, CardContent } from '~/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
 import { Separator } from '~/components/ui/separator';
@@ -9,14 +10,20 @@ import { Button } from '~/components/ui/button';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' },
+    { title: 'We Want Web LLC' },
+    {
+      name: 'description',
+      content:
+        'We Want Web LLC is a software engineering consultancy and web services provider with over a decade of experience in e-commerce, marketing, and web applications',
+    },
   ];
 };
 
 export default function Index() {
   return (
     <div className="flex flex-col min-h-[100dvh]">
+      {/* TODO: add additional Pages */}
+      {/* TODO: add logo */}
       {/* <header className="px-4 lg:px-6 h-14 flex items-center">
         <Link to="#" className="flex items-center justify-center">
           <MountainIcon className="h-6 w-6" />
@@ -54,7 +61,8 @@ export default function Index() {
           <div className="flex flex-col items-center justify-center space-y-4">
             <div className="flex flex-col items-center space-y-4">
               <h1 className="text-3xl font-bold tracking-tighter text-primary-foreground sm:text-5xl xl:text-6xl/none">
-                Elevate Your Digital Presence with We Want Web
+                Elevate Your Digital Presence with{' '}
+                <strong className="inline-block">We Want Web</strong>
               </h1>
               <p className="max-w-[600px] text-primary-foreground md:text-xl">
                 Our team of experts specializes in crafting cutting-edge
@@ -64,7 +72,7 @@ export default function Index() {
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Link
-                to="#"
+                to="#contact"
                 className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
               >
                 Get in Touch
@@ -129,7 +137,7 @@ export default function Index() {
                 </ul>
               </div>
               <img
-                src="https://placehold.co/550x310"
+                src="/services-hero.jpg"
                 width="550"
                 height="310"
                 alt="Services"
@@ -204,12 +212,12 @@ export default function Index() {
                 </p>
               </div>
             </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
+            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:gap-12">
+              {/* <div className="flex flex-col justify-center space-y-4">
                 <div className="rounded-lg bg-background p-6 shadow-sm">
                   <div className="flex items-start gap-4">
                     <Avatar>
-                      <AvatarImage src="/placeholder-user.jpg" />
+                      <AvatarImage src="https:/placehold.co/25x25" />
                       <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                     <div>
@@ -220,33 +228,32 @@ export default function Index() {
                   <Separator className="my-4" />
                   <p className="text-muted-foreground">
                     &ldquo;<strong>We Want Web</strong>, has been an invaluable
-                    partner in\n our digital transformation. Their expertise
-                    and\n attention to detail have been instrumental in the\n
-                    success of our new website and custom software\n
-                    solutions.&rdquo;
+                    partner in our digital transformation. Their expertise and
+                    attention to detail have been instrumental in the success of
+                    our new website and custom software solutions.&rdquo;
                   </p>
                 </div>
-              </div>
-              <div className="flex flex-col justify-center space-y-4">
+              </div> */}
+              <div className="flex flex-col justify-center space-y-4 max-w-[600px] mx-auto">
                 <div className="rounded-lg bg-background p-6 shadow-sm">
                   <div className="flex items-start gap-4">
                     <Avatar>
-                      <AvatarImage src="/placeholder-user.jpg" />
-                      <AvatarFallback>JD</AvatarFallback>
+                      <AvatarImage src="#" />
+                      <AvatarFallback>MG</AvatarFallback>
                     </Avatar>
                     <div>
-                      <h3 className="text-lg font-bold">Jane Smith</h3>
+                      <h3 className="text-lg font-bold">Michelle G.</h3>
                       <p className="text-muted-foreground">
-                        Marketing Manager, Globex Corp.
+                        Owner, One Stitch at a Time
                       </p>
                     </div>
                   </div>
                   <Separator className="my-4" />
                   <p className="text-muted-foreground">
                     &ldquo;Working with <strong>We Want Web</strong> has been a
-                    game-changer\n for our business. Their team&apos;s
-                    creativity and\n problem-solving skills have helped us stand
-                    out in a\n crowded market.&rdquo;
+                    game-changer for our business. Their team&apos;s creativity
+                    and problem-solving skills have helped us stand out in a
+                    crowded market.&rdquo;
                   </p>
                 </div>
               </div>
@@ -269,10 +276,10 @@ export default function Index() {
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                <Card className="bg-background shadow-sm hover:shadow-md transition-shadow">
+                <Card className="animate-in fade-in bg-background shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <img
-                      src="https://placehold.co/400x225"
+                      src="/projects-cg4.png"
                       width="400"
                       height="225"
                       alt="Project 1"
@@ -280,16 +287,19 @@ export default function Index() {
                     />
                   </CardHeader>
                   <CardContent className="p-4">
-                    <h3 className="text-xl font-bold">Project 1</h3>
+                    <h3 className="text-xl font-bold">Portfolio & Blog</h3>
                     <p className="text-muted-foreground">
-                      A custom e-commerce platform for a leading retail brand.
+                      A personal portfoliio and blog that was designed built and
+                      deployed withing 72 hours! This project was setup entirely
+                      using a headless CMS.
                     </p>
                   </CardContent>
                 </Card>
-                <Card className="bg-background shadow-sm hover:shadow-md transition-shadow">
+
+                <Card className="animate-in fade-in bg-background shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <img
-                      src="https://placehold.co/400x225"
+                      src="/projects--one-stitch-at-a-time.png"
                       width="400"
                       height="225"
                       alt="Project 2"
@@ -297,16 +307,17 @@ export default function Index() {
                     />
                   </CardHeader>
                   <CardContent className="p-4">
-                    <h3 className="text-xl font-bold">Project 2</h3>
+                    <h3 className="text-xl font-bold">E-Commerce</h3>
                     <p className="text-muted-foreground">
-                      A responsive website for a non-profit organization.
+                      A fully responsive site using a headless CMS with
+                      integrations for reporting and metrics.
                     </p>
                   </CardContent>
                 </Card>
-                <Card className="bg-background shadow-sm hover:shadow-md transition-shadow">
+                <Card className="animate-in fade-in bg-background shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <img
-                      src="https://placehold.co/400x225"
+                      src="/projects-dashboard.png"
                       width="400"
                       height="225"
                       alt="Project 3"
@@ -314,9 +325,10 @@ export default function Index() {
                     />
                   </CardHeader>
                   <CardContent className="p-4">
-                    <h3 className="text-xl font-bold">Project 3</h3>
+                    <h3 className="text-xl font-bold">Analytics Dashboard</h3>
                     <p className="text-muted-foreground">
-                      A custom web application for a fintech startup.
+                      A custom dashboard using some of the industries leading
+                      technologies in obsverability & monitoring
                     </p>
                   </CardContent>
                 </Card>
@@ -339,38 +351,59 @@ export default function Index() {
               </p>
             </div>
             <div className="mx-auto w-full max-w-sm space-y-2">
-              <form className="flex flex-col gap-2">
-                <Input
-                  type="text"
-                  placeholder="Name"
-                  className="max-w-lg flex-1"
-                />
-                <Input
-                  type="email"
-                  placeholder="Email"
-                  className="max-w-lg flex-1"
-                />
-                <Textarea placeholder="Message" className="max-w-lg flex-1" />
-                <Button type="submit">Submit</Button>
-              </form>
+              <Contact />
             </div>
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">
-          &copy; 2024 <strong>We Want Web LLC</strong>. All rights reserved.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link to="#" className="text-xs hover:underline underline-offset-4">
-            Terms of Service
-          </Link>
-          <Link to="#" className="text-xs hover:underline underline-offset-4">
-            Privacy Policy
-          </Link>
-        </nav>
-      </footer>
     </div>
+  );
+}
+
+export async function action({ request }: ActionFunctionArgs) {
+  const body = await request.formData();
+  const name = body.get('name');
+  const message = body.get('message');
+  const email = body.get('email');
+  console.log('im happenign on the server', '\nthis is the message: ', message);
+
+  return json({
+    success: true,
+    message: 'We will be in contact soon!',
+  });
+}
+function Contact() {
+  const data = useActionData<typeof action>();
+  console.log('data: ', data);
+  if (data?.success) {
+    return (
+      <Card>
+        <CardHeader>Thank You!</CardHeader>
+        <CardContent>{data.message}</CardContent>
+      </Card>
+    );
+  }
+  return (
+    <Form method="post" className="flex flex-col gap-2">
+      <Input
+        name="name"
+        type="text"
+        placeholder="Name"
+        className="max-w-lg flex-1"
+      />
+      <Input
+        name="email"
+        type="email"
+        placeholder="Email"
+        className="max-w-lg flex-1"
+      />
+      <Textarea
+        name="message"
+        placeholder="Message"
+        className="max-w-lg flex-1"
+      />
+      <Button type="submit">Submit</Button>
+    </Form>
   );
 }
 
@@ -434,24 +467,24 @@ function CodeIcon(props) {
   );
 }
 
-function MountainIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-    </svg>
-  );
-}
+// function MountainIcon(props) {
+//   return (
+//     <svg
+//       {...props}
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="24"
+//       height="24"
+//       viewBox="0 0 24 24"
+//       fill="none"
+//       stroke="currentColor"
+//       strokeWidth="2"
+//       strokeLinecap="round"
+//       strokeLinejoin="round"
+//     >
+//       <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+//     </svg>
+//   );
+// }
 
 function RocketIcon(props) {
   return (
