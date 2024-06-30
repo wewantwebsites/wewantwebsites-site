@@ -384,7 +384,7 @@ function Contact() {
     );
   }
   return (
-    <Form method="post" className="flex flex-col gap-2">
+    <Form reloadDocument method="post" className="flex flex-col gap-2">
       <Input
         name="name"
         type="text"
