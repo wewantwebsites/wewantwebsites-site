@@ -7,6 +7,7 @@ import { Separator } from '~/components/ui/separator';
 import { Input } from '~/components/ui/input';
 import { Textarea } from '~/components/ui/textarea';
 import { Button } from '~/components/ui/button';
+import Emailer from '~/lib/emailer';
 
 export const meta: MetaFunction = () => {
   return [
@@ -364,8 +365,14 @@ export async function action({ request }: ActionFunctionArgs) {
   const body = await request.formData();
   const name = body.get('name');
   const message = body.get('message');
-  const email = body.get('email');
-  console.log('im happenign on the server', '\nthis is the message: ', message);
+  const email = String(body.get('email'));
+  const emailer = new Emailer();
+  const thankYouMessage = `<h1>Thank you, ${name}, for contacting us!</h1><p>We appreciate you reaching out to us regarding: <br/><em>${message}.</em><br /> We will be in touch soon.</p>`;
+  await emailer.sendEmail(
+    email,
+    'We Want Web LLC Contact Form',
+    thankYouMessage
+  );
 
   return json({
     success: true,
@@ -374,7 +381,7 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 function Contact() {
   const data = useActionData<typeof action>();
-  console.log('data: ', data);
+
   if (data?.success) {
     return (
       <Card>
@@ -384,18 +391,20 @@ function Contact() {
     );
   }
   return (
-    <Form reloadDocument method="post" className="flex flex-col gap-2">
+    <Form method="post" className="flex flex-col gap-2">
       <Input
         name="name"
         type="text"
         placeholder="Name"
         className="max-w-lg flex-1"
+        required
       />
       <Input
         name="email"
         type="email"
         placeholder="Email"
         className="max-w-lg flex-1"
+        required
       />
       <Textarea
         name="message"

@@ -8,6 +8,7 @@ import {
 import './tailwind.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import { LinksFunction } from '@remix-run/node';
+import { SpeedInsights } from '@vercel/speed-insights/remix';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
@@ -23,8 +24,6 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
       </head>
       <body>
         {children}
-        <ScrollRestoration />
-        <Scripts />
         <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
           <p className="text-xs text-muted-foreground">
             &copy; {new Date().toLocaleDateString('en-us', { year: 'numeric' })}
@@ -40,6 +39,9 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
             Privacy Policy
           </Link>
         </nav> */}
+          <ScrollRestoration />
+          <Scripts />
+          <SpeedInsights />
         </footer>
       </body>
     </html>
