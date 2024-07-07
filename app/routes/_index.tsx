@@ -366,7 +366,8 @@ export async function action({ request }: ActionFunctionArgs) {
   const name = body.get('name');
   const message = body.get('message');
   const email = String(body.get('email'));
-  const emailer = new Emailer(import.meta.env.VITE_EMAIL_USER, import.meta.env.VITE_EMAIL_PASS);
+  const { VITE_EMAIL_USER, VITE_EMAIL_PASS } = import.meta.env;
+  const emailer = new Emailer(VITE_EMAIL_USER, VITE_EMAIL_PASS);
   const thankYouMessage = `
 <h1>Thank you, ${name}, for contacting us!</h1>
 <p>We appreciate you reaching out to us regarding: <br/><em>${message}.</em>

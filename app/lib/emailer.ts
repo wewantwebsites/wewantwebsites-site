@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+
 export default class Emailer {
   private transporter: nodemailer.Transporter;
   user: string;
@@ -25,11 +26,14 @@ export default class Emailer {
       html,
     };
     return this.transporter.sendMail(mailOptions, function (error, info) {
+      console.group('Email Sender')
       if (error) {
+
         console.error(error);
       } else {
         console.log('Email sent: ', info.response);
       }
+      console.groupEnd()
     });
   }
 }
