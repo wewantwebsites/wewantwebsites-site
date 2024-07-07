@@ -1,12 +1,10 @@
 import { json, ActionFunctionArgs, MetaFunction } from '@vercel/remix';
-import { Link, Form, useActionData } from '@remix-run/react';
+import { Link } from '@remix-run/react';
 import { Card, CardHeader, CardContent } from '~/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
 import { Separator } from '~/components/ui/separator';
-import { Input } from '~/components/ui/input';
-import { Textarea } from '~/components/ui/textarea';
-import { Button } from '~/components/ui/button';
 import Emailer from '~/lib/emailer';
+import { ContactForm } from '~/components/ui/contactForm';
 
 export const meta: MetaFunction = () => {
   return [
@@ -351,7 +349,8 @@ export default function Index() {
               </p>
             </div>
             <div className="mx-auto w-full max-w-sm space-y-2">
-              <Contact />
+              {/* <Contact /> */}
+              <ContactForm />
             </div>
           </div>
         </section>
@@ -388,42 +387,6 @@ export async function action({ request }: ActionFunctionArgs) {
         'there was an issue sending the contact email. Please try again.',
     });
   }
-}
-function Contact() {
-  const data = useActionData<typeof action>();
-
-  if (data?.success) {
-    return (
-      <Card>
-        <CardHeader>Thank You!</CardHeader>
-        <CardContent>{data.message}</CardContent>
-      </Card>
-    );
-  }
-  return (
-    <Form method="post" className="flex flex-col gap-2">
-      <Input
-        name="name"
-        type="text"
-        placeholder="Name"
-        className="max-w-lg flex-1"
-        required
-      />
-      <Input
-        name="email"
-        type="email"
-        placeholder="Email"
-        className="max-w-lg flex-1"
-        required
-      />
-      <Textarea
-        name="message"
-        placeholder="Message"
-        className="max-w-lg flex-1"
-      />
-      <Button type="submit">Submit</Button>
-    </Form>
-  );
 }
 
 function BriefcaseIcon(props: Readonly<Record<string, unknown>>) {
