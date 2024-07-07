@@ -7,7 +7,7 @@ import {
 } from '@remix-run/react';
 import './tailwind.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
-import { LinksFunction } from '@remix-run/node';
+import { LinksFunction } from '@vercel/remix';
 import { SpeedInsights } from '@vercel/speed-insights/remix';
 import { Analytics } from '@vercel/analytics/react';
 

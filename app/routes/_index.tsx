@@ -1,5 +1,4 @@
-import type { ActionFunctionArgs, MetaFunction } from '@remix-run/node';
-import { json } from '@remix-run/node';
+import { json, ActionFunctionArgs, MetaFunction } from '@vercel/remix';
 import { Link, Form, useActionData } from '@remix-run/react';
 import { Card, CardHeader, CardContent } from '~/components/ui/card';
 import { Avatar, AvatarImage, AvatarFallback } from '~/components/ui/avatar';
@@ -383,9 +382,12 @@ export async function action({ request }: ActionFunctionArgs) {
       message: 'We will be in contact soon!',
     });
   } catch {
-    return json({success: false, message: "there was an issue sending the contact email. Please try again."})
+    return json({
+      success: false,
+      message:
+        'there was an issue sending the contact email. Please try again.',
+    });
   }
-
 }
 function Contact() {
   const data = useActionData<typeof action>();
@@ -424,7 +426,7 @@ function Contact() {
   );
 }
 
-function BriefcaseIcon(props) {
+function BriefcaseIcon(props: Readonly<Record<string, unknown>>) {
   return (
     <svg
       {...props}
@@ -444,7 +446,7 @@ function BriefcaseIcon(props) {
   );
 }
 
-function BrushIcon(props) {
+function BrushIcon(props: Readonly<Record<string, unknown>>) {
   return (
     <svg
       {...props}
@@ -464,7 +466,7 @@ function BrushIcon(props) {
   );
 }
 
-function CodeIcon(props) {
+function CodeIcon(props: Readonly<Record<string, unknown>>) {
   return (
     <svg
       {...props}
@@ -503,7 +505,7 @@ function CodeIcon(props) {
 //   );
 // }
 
-function RocketIcon(props) {
+function RocketIcon(props: Readonly<Record<string, unknown>>) {
   return (
     <svg
       {...props}
