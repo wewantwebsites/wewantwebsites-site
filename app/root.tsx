@@ -9,6 +9,7 @@ import './tailwind.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import { LinksFunction } from '@remix-run/node';
 import { SpeedInsights } from '@vercel/speed-insights/remix';
+import { Analytics } from '@vercel/analytics/react';
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: 'stylesheet', href: cssBundleHref }] : []),
@@ -42,6 +43,7 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
           <ScrollRestoration />
           <Scripts />
           <SpeedInsights />
+          <Analytics />
         </footer>
       </body>
     </html>
