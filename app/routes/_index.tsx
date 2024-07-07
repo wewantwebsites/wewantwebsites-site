@@ -281,7 +281,7 @@ export default function Index() {
                       width="400"
                       height="225"
                       alt="Project 1"
-                      className="rounded-t-lg object-cover"
+                      className="rounded-t-lg object-cover max-h-[210px]"
                     />
                   </CardHeader>
                   <CardContent className="p-4">
@@ -301,7 +301,7 @@ export default function Index() {
                       width="400"
                       height="225"
                       alt="Project 2"
-                      className="rounded-t-lg object-cover"
+                      className="rounded-t-lg object-cover max-h-[210px]"
                     />
                   </CardHeader>
                   <CardContent className="p-4">
@@ -318,7 +318,7 @@ export default function Index() {
                       width="400"
                       height="225"
                       alt="Project 3"
-                      className="rounded-t-lg object-cover"
+                      className="rounded-t-lg object-cover max-h-[210px]"
                     />
                   </CardHeader>
                   <CardContent className="p-4">
