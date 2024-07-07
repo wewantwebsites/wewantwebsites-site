@@ -8,7 +8,7 @@ import { ContactForm } from '~/components/ui/contactForm';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'We Want Web LLC' },
+    { title: import.meta.env.VITE_SITE_TITLE ?? 'We Want Web' },
     {
       name: 'description',
       content:
