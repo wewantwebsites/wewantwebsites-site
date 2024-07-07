@@ -366,18 +366,25 @@ export async function action({ request }: ActionFunctionArgs) {
   const name = body.get('name');
   const message = body.get('message');
   const email = String(body.get('email'));
-  const emailer = new Emailer();
-  const thankYouMessage = `<h1>Thank you, ${name}, for contacting us!</h1><p>We appreciate you reaching out to us regarding: <br/><em>${message}.</em><br /> We will be in touch soon.</p>`;
-  await emailer.sendEmail(
-    email,
-    'We Want Web LLC Contact Form',
-    thankYouMessage
-  );
+  const emailer = new Emailer(import.meta.env.VITE_EMAIL_USER, import.meta.env.VITE_EMAIL_PASS);
+  const thankYouMessage = `
+<h1>Thank you, ${name}, for contacting us!</h1>
+<p>We appreciate you reaching out to us regarding: <br/><em>${message}.</em>
+<br /> We will be in touch soon.</p>`;
+  try {
+    await emailer.sendEmail(
+      email,
+      'We Want Web LLC Contact Form',
+      thankYouMessage
+    );
+    return json({
+      success: true,
+      message: 'We will be in contact soon!',
+    });
+  } catch {
+    return json({success: false, message: "there was an issue sending the contact email. Please try again."})
+  }
 
-  return json({
-    success: true,
-    message: 'We will be in contact soon!',
-  });
 }
 function Contact() {
   const data = useActionData<typeof action>();

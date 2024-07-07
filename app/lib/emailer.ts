@@ -3,10 +3,7 @@ export default class Emailer {
   private transporter: nodemailer.Transporter;
   user: string;
 
-  constructor() {
-    const user = import.meta.env.VITE_EMAIL_USER;
-    const pass = import.meta.env.VITE_EMAIL_PASS;
-
+  constructor(user: string, password: string) {
     this.user = user;
     this.transporter = nodemailer.createTransport({
       host: 'smtppro.zoho.com',
@@ -15,7 +12,7 @@ export default class Emailer {
       service: 'zoho',
       auth: {
         user,
-        pass,
+        pass: password,
       },
     });
   }
