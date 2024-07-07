@@ -1,10 +1,5 @@
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from '@remix-run/react';
+import { captureRemixErrorBoundaryError , withSentry } from "@sentry/remix";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useRouteError } from '@remix-run/react';
 import './tailwind.css';
 import { cssBundleHref } from '@remix-run/css-bundle';
 import { LinksFunction } from '@remix-run/node';
@@ -50,6 +45,14 @@ export function Layout({ children }: Readonly<{ children: React.ReactNode }>) {
   );
 }
 
-export default function App() {
+export const ErrorBoundary = () => {
+  const error = useRouteError();
+  captureRemixErrorBoundaryError(error);
+  return <div>Something went wrong</div>;
+};
+
+export function App() {
   return <Outlet />;
 }
+
+export default withSentry(App);
