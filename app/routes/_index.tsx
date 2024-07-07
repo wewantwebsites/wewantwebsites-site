@@ -297,7 +297,7 @@ export default function Index() {
                 <Card className="animate-in fade-in bg-background shadow-sm hover:shadow-md transition-shadow">
                   <CardHeader>
                     <img
-                      src="/projects--one-stitch-at-a-time.png"
+                      src="/projects-raincatcher.png"
                       width="400"
                       height="225"
                       alt="Project 2"
@@ -305,10 +305,9 @@ export default function Index() {
                     />
                   </CardHeader>
                   <CardContent className="p-4">
-                    <h3 className="text-xl font-bold">E-Commerce</h3>
+                    <h3 className="text-xl font-bold">Landing Page</h3>
                     <p className="text-muted-foreground">
-                      A fully responsive site using a headless CMS with
-                      integrations for reporting and metrics.
+                      A fully responsive landing page that is conversion focused
                     </p>
                   </CardContent>
                 </Card>
